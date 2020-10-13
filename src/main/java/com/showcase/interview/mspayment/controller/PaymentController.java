@@ -51,6 +51,11 @@ public class PaymentController {
 	public @ResponseBody Payment updateData(@RequestBody Payment newPayment, @PathVariable Long id) {
 		return paymentService.updateById(newPayment, id);
 	}
+	
+	@PutMapping("/{id}/make-payment")
+	public @ResponseBody Payment makePayment(@RequestBody Payment newPayment, @PathVariable Long id) {
+		return paymentService.makePaymentById(newPayment, id);
+	}
 
 	@GetMapping("/all")
 	public @ResponseBody Iterable<Payment> getAll() {

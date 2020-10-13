@@ -4,14 +4,10 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 
 @Entity
@@ -21,7 +17,6 @@ public class Payment extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(nullable = false)
 	private String trxId;
 
 	@Column(nullable = false)
@@ -35,13 +30,6 @@ public class Payment extends BaseModel {
 
 	@Column(nullable = false)
 	private Long orderId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="bank_id")
-    private Bank bank;
-    
-    @Transient
-    private String bankName;
     
 	public Long getId() {
 		return id;
@@ -81,14 +69,6 @@ public class Payment extends BaseModel {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public void setBank(Bank bank) {
-		this.bank = bank;
-	}
-
-	public String getbankName() {
-		return bankName = this.bank.getName();
 	}
 
 	public void setOrderId(Long orderId) {
